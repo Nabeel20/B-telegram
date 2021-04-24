@@ -1,19 +1,27 @@
-//const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require('node-telegram-bot-api');
 const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
-//const bot = new TelegramBot(token, { polling: true });
-const TeleBot = require('telebot');
-const tele_bot = new TeleBot({
-    token,
-    webhook: {
-        url: 'b-t-b-6t5c0mbxi-nabeel20.vercel.app/api/brain', // HTTPS url to send updates to.
-    },
-});
-tele_bot.start();
+const bot = new TelegramBot(token, { polling: true });
+// const TeleBot = require('telebot');
+// const tele_bot = new TeleBot({
+//     token,
+//     polling: { // Optional. Use polling.
+//         interval: 1000, // Optional. How often check updates (in ms).
+//         timeout: 0, // Optional. Update polling timeout (0 - short polling).
+//         limit: 100, // Optional. Limits the number of updates to be retrieved.
+//         retryTimeout: 2500, // Optional. Reconnecting timeout (in ms).
+//         proxy: 'http://username:password@yourproxy.com:8080' // Optional. An HTTP proxy to be used.
+//     },
+//});
+//tele_bot.start();
+bot.on('message', (msg) => {
+    const chatId = msg.chat.id;
 
-tele_bot.on('text', (msg) => msg.reply.text(msg.text))
+    // send a message to the chat acknowledging receipt of their message
+    bot.sendMessage(chatId, 'Received your message');
+});
 module.exports = (req, res) => {
     try {
-        console.log('0.4');
+        console.log('0.5');
     } catch (error) {
         console.log('g')
     }
