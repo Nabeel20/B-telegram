@@ -10,5 +10,5 @@ module.exports = (req, res) => {
 
     }
 
-    response.send('OK');
+    res.send('OK');
 }
