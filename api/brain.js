@@ -7,4 +7,5 @@ module.exports = (req, res) => {
         return bot.sendMessage('186274711', `Bam! \n ${JSON.stringify(body)}`);
     });
     bot.start();
+    response.send('OK');
 }
