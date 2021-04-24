@@ -11,7 +11,5 @@
   "dependencies": {
     "telebot": "^1.4.1"
   },
-  "devDependencies": {
-    "ngrok": "^4.0.1"
-  }
+  "devDependencies": {}
 }
