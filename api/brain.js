@@ -1,5 +1,6 @@
 const TeleBot = require('telebot');
 //const bot = new TeleBot('1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo');
+const { Telegraf } = require('telegraf')
 const bot = new Telegraf('1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo');
 
 module.exports = (req, res) => {
