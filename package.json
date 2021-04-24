@@ -9,6 +9,7 @@
   "author": "Nabeel",
   "license": "MIT",
   "dependencies": {
+    "node-telegram-bot-api": "^0.52.0",
     "telebot": "^1.4.1",
     "telegraf": "^3.38.0"
   },
