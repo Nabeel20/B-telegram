@@ -1,14 +1,18 @@
-const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
-const { Telegraf } = require('telegraf');
-const bot = new Telegraf(token);
-bot.launch();
-
+const TeleBot = require('telebot');
 
 module.exports = (req, res) => {
-    const { body } = req;
+    try {
+        const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
+        const bot = new TeleBot({
+            token,
+            usePlugins: ['askUser']
+        });
+        const { body } = req;
 
-    bot.start((ctx) => ctx.reply('Welcome'));
-    bot.hears('hi', (ctx) => ctx.reply('Hey there'));
-    bot.hears('body', ctx => ctx.reply(`body is: ${JSON.stringify(body)}`))
-    res.status(200).send(`Bot is alive!`)
+        bot.on('text', (msg) => msg.reply.text(msg.text));
+        bot.start();
+    } catch (error) {
+
+    }
+    res.send('ok')
 }
