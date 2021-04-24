@@ -4,6 +4,6 @@ module.exports = (req, res) => {
     const { body } = req;
     const { chat: { id }, text } = body.message;
     console.log(message)
-    bot.sendMessage(chat.id, text)
+    bot.sendMessage('186274711', JSON.stringify(body))
     bot.start();
 }
