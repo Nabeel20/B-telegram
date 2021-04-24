@@ -1,7 +1,5 @@
 const TeleBot = require('telebot');
-//const bot = new TeleBot('1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo');
-const { Telegraf } = require('telegraf')
-const bot = new Telegraf('1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo');
+const bot = new TeleBot('1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo');
 
 module.exports = (req, res) => {
     try {
@@ -11,13 +9,13 @@ module.exports = (req, res) => {
         //     bot.sendMessage('186274711', 'Welcome')
         //     bot.sendMessage('186274711', text)
         // });
-        bot.hears('hi', () => bot.sendMessage('186274711', JSON.stringify(body)))
-        bot.hears('nabeel', () => bot.sendMessage('', 'welcome nabeel'))
-        bot.launch()
-        bot.start();
+        res.send(JSON.stringify(body));
+
     } catch (error) {
 
     }
 
-    res.send('OK');
 }
+bot.on('text', (msg) => msg.reply.text(msg.text));
+
+bot.start();
