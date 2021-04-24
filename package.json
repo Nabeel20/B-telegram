@@ -9,6 +9,6 @@
   "author": "Nabeel",
   "license": "MIT",
   "dependencies": {
-    "telegraf": "^4.3.0"
+    "telebot": "^1.4.1"
   }
 }
