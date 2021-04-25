@@ -6,7 +6,7 @@ const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
 bot.on('text', async (ctx) => {
-    let msg = ctx.message;
+    let msg = ctx.message.text;
     if (msg == 'nabeel') {
         await ctx.reply('ملفات بلسم: ملف المخيخ - السنة الثانية');
         await ctx.reply(`you searched for: ${msg}`)
