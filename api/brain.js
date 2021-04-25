@@ -1,18 +1,21 @@
 const TeleBot = require('telebot');
+const app = require('express')()
 
-module.exports = (req, res) => {
+const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
+const bot = new TeleBot(token);
+
+bot.command('hello', (ctx) => ctx.reply('Hello, friend!'))
+
+bot.telegram.setWebhook(
+    `https://${process.env.VERCEL_URL}/api/brain`
+)
+
+app.get('/api', async (req, res) => {
     try {
-        const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
-        const bot = new TeleBot({
-            token,
-            usePlugins: ['askUser']
-        });
-        const { body } = req;
-
-        bot.on('text', (msg) => msg.reply.text(msg.text));
-        bot.start();
-    } catch (error) {
-
+        await bot.handleUpdate(req.body);
+    } finally {
+        res.status(200).end()
     }
-    res.send('ok')
-}
+})
+
+module.exports = app
