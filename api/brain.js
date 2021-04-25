@@ -7,11 +7,12 @@ const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
 bot.on('text', async (ctx) => {
     let msg = ctx.message;
-    if (msg == 'المخيخ') {
-        ctx.reply('ملفات بلسم: ملف المخيخ - السنة الثانية').then(() => {
-            ctx.replyWithDocument('https://t.me/Balsam_app/184')
-        })
+    if (msg == 'nabeel') {
+        await ctx.reply('ملفات بلسم: ملف المخيخ - السنة الثانية');
+        await ctx.reply(`you searched for: ${msg}`)
+        ctx.replyWithDocument('https://t.me/Balsam_app/184');
     } else {
+        await ctx.reply(`you searched for: ${msg}`)
         ctx.reply('عذراً لا يوجد ملفات. ربما يمكنك البحث بنفسك')
     }
 })
