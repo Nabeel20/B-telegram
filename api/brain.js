@@ -5,15 +5,12 @@ const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
 bot.command('hello', (ctx) => ctx.reply('Hello, friend!'));
-bot.start((ctx) => ctx.reply(`أهلاً ${ctx.first_name}`));
-bot.on('text', ctx => {
-    ctx.reply(handel_text_input(ctx.text))
-})
+bot.start((ctx) => ctx.reply(JSON.stringify(ctx, null, 2)));
 
 module.exports = async function (req, res) {
     try {
         const body = await json(req)
-        bot.handleUpdate(body)
+        await bot.handleUpdate(body)
         res.statusCode = 200
         res.end('')
     } catch (e) {
