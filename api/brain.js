@@ -11,9 +11,9 @@ bot.hears('دورات', ctx => {
     ctx.replyWithDocument(`https://t.me/Balsam_app/186`)
 })
 bot.hears('المخيخ', ctx => {
-    ctx.reply('بنك بلسم لمقرر التشريح - قسم التشريح - السنة الثانية')
     ctx.replyWithDocument(`https://t.me/Balsam_app/184`)
 })
+
 module.exports = async function (req, res) {
     try {
         const body = await json(req)
