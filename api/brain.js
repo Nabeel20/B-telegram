@@ -6,10 +6,13 @@ const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
 bot.on('text', async (ctx) => {
-    let msg = ctx.update.message;
+    let msg = ctx.message;
     if (msg == 'المخيخ') {
-        await bot.telegram.sendMessage(ctx.chat.id, 'بنك التشريح- ملفات بلسم - السنة الثانية');
-        await bot.telegram.sendDocument(ctx.chat.id, 'https://t.me/Balsam_app/184')
+        ctx.reply('ملفات بلسم: ملف المخيخ - السنة الثانية').then(() => {
+            ctx.replyWithDocument('https://t.me/Balsam_app/184')
+        })
+    } else {
+        ctx.reply('عذراً لا يوجد ملفات. ربما يمكنك البحث بنفسك')
     }
 })
 
