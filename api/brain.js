@@ -1,8 +1,8 @@
-const TeleBot = require('telebot');
+const { Telegraf } = require('telegraf');
 const app = require('express')()
 
 const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
-const bot = new TeleBot(token);
+const bot = new Telegraf(token);
 
 bot.command('hello', (ctx) => ctx.reply('Hello, friend!'))
 
