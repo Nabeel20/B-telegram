@@ -7,8 +7,15 @@ const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 bot.command('hello', (ctx) => ctx.reply('Hello, friend!'));
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
 
-bot.hears('download', ctx => {
-    ctx.replyWithDocument(`https://t.me/Balsam_app/186`)
+bot.hears('دورات', ctx => {
+    ctx.replyWithDocument(`https://t.me/Balsam_app/186`, [{
+        caption: 'دورات المهارات السريرية - قسم الصدرية - السنة الثانية',
+    }])
+})
+bot.hears('المخيخ', ctx => {
+    ctx.replyWithDocument(`https://t.me/Balsam_app/184`, [{
+        reply_to_message_id: ctx.chat.id
+    }])
 })
 module.exports = async function (req, res) {
     try {
