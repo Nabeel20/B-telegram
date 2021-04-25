@@ -6,10 +6,6 @@ const bot = new Telegraf(token);
 
 bot.command('hello', (ctx) => ctx.reply('Hello, friend!'))
 
-bot.telegram.setWebhook(
-    `https://${process.env.VERCEL_URL}/api/brain`
-)
-
 app.get('/api', async (req, res) => {
     try {
         await bot.handleUpdate(req.body);
