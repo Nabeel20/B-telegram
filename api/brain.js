@@ -8,9 +8,7 @@ bot.command('hello', (ctx) => ctx.reply('Hello, friend!'));
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
 
 bot.hears('دورات', ctx => {
-    ctx.replyWithDocument(`https://t.me/Balsam_app/186`, [{
-        caption: ,
-    }])
+    ctx.replyWithDocument(`https://t.me/Balsam_app/186`)
 })
 bot.hears('المخيخ', ctx => {
     ctx.reply('بنك بلسم لمقرر التشريح - قسم التشريح - السنة الثانية')
