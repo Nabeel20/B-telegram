@@ -6,7 +6,10 @@ const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
 bot.command('hello', (ctx) => ctx.reply('Hello, friend!'));
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
-bot.on('text', ctx => ctx.reply(handel_text_input(ctx.update.text)))
+
+bot.hears('download', ctx => {
+    ctx.replyWithDocument(`https://t.me/Balsam_app/186`)
+})
 module.exports = async function (req, res) {
     try {
         const body = await json(req)
@@ -19,9 +22,3 @@ module.exports = async function (req, res) {
         res.end('<h1>Server Error</h1><p>عذراً، حدثت مشكلة</p>')
     }
 };
-
-function handel_text_input(input_text) {
-    let names = ['Nabeel', 'Najwa', 'Adnan'];
-    if (names.includes(input_text)) return 'Welcome! Family ;)'
-    return 'Welcome - not family'
-}
