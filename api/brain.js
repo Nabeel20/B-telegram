@@ -4,14 +4,13 @@ const { json } = require('micro');
 const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
-bot.command('hello', (ctx) => ctx.reply('Hello, friend!'));
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
-
-bot.hears('دورات', ctx => {
-    ctx.replyWithDocument(`https://t.me/Balsam_app/186`)
-})
-bot.hears('المخيخ', ctx => {
-    ctx.replyWithDocument(`https://t.me/Balsam_app/184`)
+bot.on('text', async (ctx) => {
+    let msg = ctx.update.message;
+    if (msg == 'المخيخ') {
+        await bot.telegram.sendMessage(ctx.chat.id, 'بنك التشريح- ملفات بلسم - السنة الثانية');
+        await bot.telegram.sendDocument(ctx.chat.id, 'https://t.me/Balsam_app/184')
+    }
 })
 
 module.exports = async function (req, res) {
