@@ -5,9 +5,9 @@ const reader = require('../g-sheeets/index');
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
-function get_database() {
+async function get_database() {
     let output = [];
-    reader(
+    await reader(
         {
             sheetId: "1R8vXFIZ32PUK3M2zHYuJnXCyZh7Nbg0BWKsBCPz9dY0",
         },
@@ -17,8 +17,6 @@ function get_database() {
         (error) => {
             output = []
         })
-
-
     return output
 }
 
