@@ -1,18 +1,17 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
-const Papa = require('papaparse')
+const reader = require("g-sheets-api");
+
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
+
 function get_database() {
     let output = []
-    Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vRFWdeQobUr_20KRsU_oxUFy9o8Xn0MN0YxQSxbpWzpgfTPJ6jw_UrlrqmmyCTVq9bnqrA-5PjNsYup/pub?output=csv', {
-        download: true,
-        header: true,
-        complete: function (results) {
-            let data = results.data
-            output = data
-        }
-    })
+    reader({
+        sheetId: "1R8vXFIZ32PUK3M2zHYuJnXCyZh7Nbg0BWKsBCPz9dY0",
+    }, (results) => {
+        output = results
+    });
     return output;
 }
 

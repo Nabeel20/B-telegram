@@ -10,10 +10,10 @@
   "license": "MIT",
   "dependencies": {
     "micro": "^9.3.4",
-    "node-telegram-bot-api": "^0.52.0",
-    "papaparse": "^5.3.0",
     "telebot": "^1.4.1",
     "telegraf": "^3.38.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "g-sheets-api": "^1.4.1"
+  }
 }
