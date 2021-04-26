@@ -1,19 +1,31 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
 
-const token = '1785552676:AAFICB4xRoNHcK0Ve-lbXCbSePtfwwsanfo';
+const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
+let database = [
+    {
+        name: 'دورات الأوالي',
+        path: 'https://t.me/Balsam_app/203'
+    },
+]
 
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
+bot.command('balsam', (ctx) => ctx.reply(`قناتنا على التلغرام @Balsam_app`))
+
 bot.on('text', async (ctx) => {
     let msg = ctx.message.text;
-    if (msg == 'nabeel') {
-        await ctx.reply('ملفات بلسم: ملف المخيخ - السنة الثانية');
-        await ctx.reply(`you searched for: ${msg}`)
-        ctx.replyWithDocument('https://t.me/Balsam_app/184');
+    let database_output = database.filter(quiz => quiz.name.includes(msg.trim()))
+
+    if (database_output.length > 0) {
+        for (let index = 0; index < database_output.length; index++) {
+            const quiz = database_output[index];
+            await ctx.reply(quiz.item.name);
+            await ctx.reply(quiz.item.path);
+        }
     } else {
-        await ctx.reply(`you searched for: ${msg}`)
-        ctx.reply('عذراً لا يوجد ملفات. ربما يمكنك البحث بنفسك')
+        await ctx.reply('عذراً لم أجد الملف الذي تبحث عنه');
+        await ctx.reply('ربما يمكنك البحث عنه على قناتنا على التلغرام @Balsam_app')
     }
 })
 
