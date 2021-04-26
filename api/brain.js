@@ -1,6 +1,6 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
-const { Papa } = require('papaparse')
+const Papa = require('papaparse')
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 function get_database() {
