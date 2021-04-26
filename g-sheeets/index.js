@@ -18,4 +18,3 @@ const reader = (options, callback, onError) => {
 
 module.exports = reader;
 
-export default reader;

@@ -36,5 +36,4 @@ const gsheetsAPI = function (sheetId, sheetNumber = 1) {
         throw new Error(`General error when fetching GSheet: ${err}`);
     }
 };
-
-export default gsheetsAPI;
+module.exports = gsheetsAPI

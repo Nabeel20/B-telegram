@@ -141,5 +141,4 @@ const gsheetProcessor = function (options, callback, onError) {
         })
         .catch(err => onError(err.message));
 };
-
-export default gsheetProcessor;
+module.exports = gsheetProcessor
