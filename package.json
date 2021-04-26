@@ -10,10 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "micro": "^9.3.4",
-    "telebot": "^1.4.1",
+    "node-fetch": "^2.6.1",
     "telegraf": "^3.38.0"
   },
-  "devDependencies": {
-    "g-sheets-api": "^1.4.1"
-  }
+  "devDependencies": {}
 }

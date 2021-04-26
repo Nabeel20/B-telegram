@@ -1,18 +1,25 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
-const reader = require("g-sheets-api");
+const reader = require('../g-sheeets/index');
 
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
 function get_database() {
-    let output = []
-    reader({
-        sheetId: "1R8vXFIZ32PUK3M2zHYuJnXCyZh7Nbg0BWKsBCPz9dY0",
-    }, (results) => {
-        output = results
-    });
-    return output;
+    let output = [];
+    reader(
+        {
+            sheetId: "1R8vXFIZ32PUK3M2zHYuJnXCyZh7Nbg0BWKsBCPz9dY0",
+        },
+        (results) => {
+            output = results
+        },
+        (error) => {
+            output = []
+        })
+
+
+    return output
 }
 
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
@@ -30,6 +37,7 @@ bot.on('text', async (ctx) => {
         }
     } else {
         await ctx.reply('عذراً لم أجد الملف الذي تبحث عنه');
+        await ctx.reply(JSON.stringify(get_database(), null, 2))
         await ctx.reply('ربما يمكنك البحث عنه على قناتنا على التلغرام @Balsam_app')
     }
 })
