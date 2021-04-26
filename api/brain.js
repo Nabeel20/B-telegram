@@ -20,8 +20,8 @@ bot.on('text', async (ctx) => {
     if (database_output.length > 0) {
         for (let index = 0; index < database_output.length; index++) {
             const quiz = database_output[index];
-            await ctx.reply(quiz.item.name);
-            await ctx.reply(quiz.item.path);
+            await ctx.reply(quiz.name);
+            await ctx.reply(quiz.path);
         }
     } else {
         await ctx.reply('عذراً لم أجد الملف الذي تبحث عنه');
