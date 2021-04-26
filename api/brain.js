@@ -1,26 +1,32 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
-
+const { Papa } = require('papaparse')
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
-let database = [
-    {
-        name: 'دورات الأوالي',
-        path: 'https://t.me/Balsam_app/203'
-    },
-]
+function get_database() {
+    let output = []
+    Papa.parse('https://docs.google.com/spreadsheets/d/e/2PACX-1vRFWdeQobUr_20KRsU_oxUFy9o8Xn0MN0YxQSxbpWzpgfTPJ6jw_UrlrqmmyCTVq9bnqrA-5PjNsYup/pub?output=csv', {
+        download: true,
+        header: true,
+        complete: function (results) {
+            let data = results.data
+            output = data
+        }
+    })
+    return output;
+}
 
 bot.start((ctx) => ctx.reply(`أهلاً ${ctx.chat.first_name}`));
 bot.command('balsam', (ctx) => ctx.reply(`قناتنا على التلغرام @Balsam_app`))
 
 bot.on('text', async (ctx) => {
     let msg = ctx.message.text;
-    let database_output = database.filter(quiz => quiz.name.includes(msg.trim()))
+    let database_output = get_database().filter(quiz => quiz.name.includes(msg.trim()))
 
     if (database_output.length > 0) {
         for (let index = 0; index < database_output.length; index++) {
             const quiz = database_output[index];
-            await ctx.reply(quiz.name);
+            await ctx.reply(quiz.caption);
             await ctx.reply(quiz.path);
         }
     } else {
