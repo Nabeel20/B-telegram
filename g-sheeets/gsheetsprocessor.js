@@ -1,4 +1,4 @@
-const GSheetsapi = require('./gsheetsapi');
+const gsheetsAPI = require('./gsheetsapi');
 
 function matchValues(valToMatch, valToMatchAgainst, matchingType) {
     try {
@@ -122,7 +122,7 @@ function processGSheetResults(
 }
 
 const gsheetProcessor = function (options, callback, onError) {
-    return GSheetsapi(
+    return gsheetsAPI(
         options.sheetId,
         options.sheetNumber ? options.sheetNumber : 1
     )

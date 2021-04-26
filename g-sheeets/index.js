@@ -1,7 +1,7 @@
-const GSheetProcessor = require('./gsheetsprocessor');
+const gsheetProcessor = require('./gsheetsprocessor');
 
 const reader = (options, callback, onError) => {
-    return GSheetProcessor(
+    return gsheetProcessor(
         options,
         results => {
             callback(results);
