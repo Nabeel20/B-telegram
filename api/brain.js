@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
-function get_database() {
+async function get_database() {
     const gsheetsAPI = function (sheetId, sheetNumber = 1) {
         const errorObj = { hasError: true };
 
@@ -189,7 +189,7 @@ function get_database() {
         );
     };
     let output = [];
-    reader(
+    await reader(
         {
             sheetId: "1R8vXFIZ32PUK3M2zHYuJnXCyZh7Nbg0BWKsBCPz9dY0",
         },
