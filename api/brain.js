@@ -25,8 +25,8 @@ bot.command('balsam', (ctx) => ctx.reply(`قناتنا على التلغرام @
 
 bot.on('text', async (ctx) => {
     let msg = ctx.message.text;
-    let database_output = get_database().filter(quiz => quiz.name.includes(msg.trim()))
-
+    //  let database_output = get_database().filter(quiz => quiz.name.includes(msg.trim()))
+    let database_output = []
     if (database_output.length > 0) {
         for (let index = 0; index < database_output.length; index++) {
             const quiz = database_output[index];
