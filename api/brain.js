@@ -74,12 +74,12 @@ bot.on('text', async (ctx) => {
     let msg = ctx.message.text;
     await ctx.replyWithChatAction('typing');
     const sheets = await fetch_database();
-    let filtered_sheets = sheets.find(quiz => quiz.name.includes(msg.trim()));
+    let quiz_file = sheets.find(quiz => quiz.name.includes(msg.trim()));
     if (filtered_sheets != undefined) {
         ctx.replyWithChatAction('typing');
-        await ctx.reply(quiz.caption);
+        await ctx.reply(quiz_file.caption);
         ctx.replyWithChatAction('upload_document');
-        await ctx.replyWithDocument(quiz.path);
+        await ctx.replyWithDocument(quiz_file.path);
     } else {
         ctx.replyWithChatAction('typing');
         await ctx.reply('عذراً لم أتمكن من إيجاد الملف')
