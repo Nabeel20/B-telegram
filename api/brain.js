@@ -72,6 +72,7 @@ bot.command('balsam', (ctx) => ctx.reply(`قناتنا على التلغرام @
 
 bot.on('text', async (ctx) => {
     let msg = ctx.message.text;
+    await ctx.replyWithChatAction('typing');
     const sheets = await fetch_database();
     let filtered_sheets = sheets.filter(quiz => quiz.name.includes(msg.trim()));
 
