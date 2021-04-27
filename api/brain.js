@@ -82,9 +82,15 @@ bot.on('text', async (ctx) => {
                 })
             }
         } else {
-            await ctx.reply('عذراً لم أجد الملف الذي تبحث عنه');
-            fetch_database().then(value => ctx.reply(JSON.stringify(value, null, 2)))
-            await ctx.reply('ربما يمكنك البحث عنه على قناتنا على التلغرام @Balsam_app')
+            fetch_database().then(value => {
+                ctx.reply('عذراً لم أجد الملف الذي تبحث عنه')
+                    .then(() => {
+                        ctx.reply(JSON.stringify(value, null, 2))
+                    })
+                    .then(() => {
+                        ctx.reply('ربما يمكنك البحث عنه على قناتنا على التلغرام @Balsam_app')
+                    })
+            })
         }
     })
 
