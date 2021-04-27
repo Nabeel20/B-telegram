@@ -77,8 +77,9 @@ bot.on('text', async (ctx) => {
         if (sheets.length > 0) {
             for (let index = 0; index < sheets.length; index++) {
                 const quiz = sheets[index];
-                await ctx.reply(quiz.caption);
-                await ctx.reply(quiz.path);
+                ctx.reply(quiz.caption).then(() => {
+                    ctx.reply(quiz.path);
+                })
             }
         } else {
             await ctx.reply('عذراً لم أجد الملف الذي تبحث عنه');
