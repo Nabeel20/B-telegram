@@ -75,7 +75,7 @@ bot.on('text', async (ctx) => {
     await ctx.replyWithChatAction('typing');
     const sheets = await fetch_database();
     let quiz_file = sheets.find(quiz => quiz.name.includes(msg.trim()));
-    if (filtered_sheets != undefined) {
+    if (quiz_file != undefined) {
         ctx.replyWithChatAction('typing');
         await ctx.reply(quiz_file.caption);
         ctx.replyWithChatAction('upload_document');
