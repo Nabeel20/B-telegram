@@ -82,7 +82,7 @@ bot.on('text', async (ctx) => {
         await ctx.replyWithDocument(quiz_file.path);
     } else {
         ctx.replyWithChatAction('typing');
-        await ctx.reply('عذراً لم أتمكن من إيجاد الملف')
+        await ctx.reply(' ☹️ عذراً لم أتمكن من إيجاد الملف')
     }
 })
 
