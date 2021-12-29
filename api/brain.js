@@ -73,37 +73,45 @@ bot.start(async (ctx) => {
     ctx.replyWithChatAction('typing');
     await ctx.reply(`أهلاً ${ctx.chat.first_name}`);
     await ctx.reply('أرسل اسم الاختبار أو الدورة من فضلك 😃');
-    await ctx.telegram.sendMessage('@nabeel_analytics', `ID: ${ctx.chat.id} \n User name: ${ctx.chat.username}`);
+    //   await ctx.telegram.sendMessage('@nabeel_analytics', `ID: ${ctx.chat.id} \n User name: ${ctx.chat.username}`);
 });
 bot.command('balsam', (ctx) => ctx.reply(`قناتنا على التلغرام @Balsam_app`));
 bot.hears('شكراً', ctx => ctx.reply('أهلاً وسهلاً 😌'));
-bot.on('text', async (ctx) => {
-    let msg = ctx.message.text;
-    if (msg.length > 3) {
-        if (msg.trim() == 'دورات' || msg.trim() == 'دورة') {
-            ctx.replyWithChatAction('typing');
-            await ctx.reply(`${msg} ماذا؟ 🔍🤔`);
-        } else {
-            await ctx.replyWithChatAction('typing');
-            const sheets = await fetch_database();
-            let files = sheets.filter(quiz => quiz.name.includes(msg.trim()));
-            if (files.length > 0) {
-                for (let i = 0; i < files.length; i++) {
-                    let quiz = files[i];
-                    ctx.replyWithChatAction("typing");
-                    let caption = quiz.caption.split('-');
-                    await ctx.reply(`${caption[0]}    ${caption[1]} 📖 ${caption[2]} 🚩`);
-                    ctx.replyWithChatAction("upload_document");
-                    await ctx.replyWithDocument(quiz.path);
-                }
-            } else {
-                ctx.replyWithChatAction("typing");
-                await ctx.reply("عذراً لم أتمكن من إيجاد الملف ☹️🤔");
-            }
-        }
-    } else {
-        ctx.replyWithChatAction('typing');
-        await ctx.reply('3 حروف فقط؟ متأكد 🤔');
+// bot.on('text', async (ctx) => {
+//     let msg = ctx.message.text;
+//     if (msg.length > 3) {
+//         if (msg.trim() == 'دورات' || msg.trim() == 'دورة') {
+//             ctx.replyWithChatAction('typing');
+//             await ctx.reply(`${msg} ماذا؟ 🔍🤔`);
+//         } else {
+//             await ctx.replyWithChatAction('typing');
+//             const sheets = await fetch_database();
+//             let files = sheets.filter(quiz => quiz.name.includes(msg.trim()));
+//             if (files.length > 0) {
+//                 for (let i = 0; i < files.length; i++) {
+//                     let quiz = files[i];
+//                     ctx.replyWithChatAction("typing");
+//                     let caption = quiz.caption.split('-');
+//                     await ctx.reply(`${caption[0]}    ${caption[1]} 📖 ${caption[2]} 🚩`);
+//                     ctx.replyWithChatAction("upload_document");
+//                     await ctx.replyWithDocument(quiz.path);
+//                 }
+//             } else {
+//                 ctx.replyWithChatAction("typing");
+//                 await ctx.reply("عذراً لم أتمكن من إيجاد الملف ☹️🤔");
+//             }
+//         }
+//     } else {
+//         ctx.replyWithChatAction('typing');
+//         await ctx.reply('3 حروف فقط؟ متأكد 🤔');
+//     }
+// })
+bot.hears('file', ctx => {
+    try {
+        const data = readFileSync(join(__dirname, '_files', 'test.txt'), 'utf8')
+        ctx.reply(data)
+    } catch (err) {
+        ctx.reply(err)
     }
 })
 module.exports = async function (req, res) {
@@ -118,11 +126,3 @@ module.exports = async function (req, res) {
         res.end('<h1>Server Error</h1><p>عذراً، حدثت مشكلة</p>')
     }
 };
-bot.hears('file', ctx => {
-    try {
-        const data = readFileSync(join(__dirname, '_files', 'ci.yml'), 'utf8')
-        ctx.reply(data)
-    } catch (err) {
-        ctx.reply(err)
-    }
-})
