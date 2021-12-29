@@ -106,14 +106,14 @@ bot.hears('شكراً', ctx => ctx.reply('أهلاً وسهلاً 😌'));
 //         await ctx.reply('3 حروف فقط؟ متأكد 🤔');
 //     }
 // })
-bot.hears('file', ctx => {
-    try {
-        const data = readFileSync(join(__dirname, '_files', 'test.txt'), 'utf8')
-        ctx.reply(data)
-    } catch (err) {
-        ctx.reply(err)
-    }
-})
+// bot.hears('file', ctx => {
+//     try {
+//         const data = readFileSync(join(__dirname, '_files', 'test.txt'), 'utf8')
+//         ctx.reply(data)
+//     } catch (err) {
+//         ctx.reply(err)
+//     }
+// })
 module.exports = async function (req, res) {
     try {
         const body = await json(req)
