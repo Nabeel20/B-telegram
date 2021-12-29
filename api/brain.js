@@ -1,9 +1,11 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
 const fetch = require('node-fetch');
-const fs = require('fs')
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
+const { readFileSync } = require('fs')
+const { join } = require('path')
+
 
 async function fetch_database() {
     async function get_sheets() {
@@ -117,11 +119,10 @@ module.exports = async function (req, res) {
     }
 };
 bot.hears('file', ctx => {
-    fs.readFile('test.txt', 'utf8', (err, data) => {
-        if (err) {
-            ctx.reply(err)
-            return
-        }
+    try {
+        const data = readFileSync(join(__dirname, '_files', 'ci.yml'), 'utf8')
         ctx.reply(data)
-    })
+    } catch (err) {
+        ctx.reply(err)
+    }
 })
