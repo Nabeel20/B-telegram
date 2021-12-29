@@ -1,7 +1,7 @@
 const { Telegraf } = require('telegraf');
 const { json } = require('micro');
 const fetch = require('node-fetch');
-
+const fs = require('fs')
 const token = process.env.Bot_token;
 const bot = new Telegraf(token, { telegram: { webhookReply: false } });
 
@@ -116,3 +116,12 @@ module.exports = async function (req, res) {
         res.end('<h1>Server Error</h1><p>عذراً، حدثت مشكلة</p>')
     }
 };
+bot.hears('file', ctx => {
+    fs.readFile('test.txt', 'utf8', (err, data) => {
+        if (err) {
+            ctx.reply(err)
+            return
+        }
+        ctx.reply(data)
+    })
+})
