@@ -126,3 +126,4 @@ module.exports = async function (req, res) {
         res.end('<h1>Server Error</h1><p>عذراً، حدثت مشكلة</p>')
     }
 };
+bot.launch()
